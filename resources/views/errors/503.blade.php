@@ -1,0 +1,1 @@
+@include('errors.page', ['code' => 503, 'titre' => __('Maintenance en cours'), 'texte' => __('La plateforme revient dans quelques minutes. Les dates d’ouverture et de clôture des scrutins ne changent pas.')])

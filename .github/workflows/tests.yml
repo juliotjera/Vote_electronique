@@ -1,0 +1,78 @@
+# À chaque envoi : tests sur SQLite et sur PostgreSQL (la base de production), formatage du code, compilation.
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    name: Tests (${{ matrix.base }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        base: [sqlite, pgsql]
+
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: vote_test
+          POSTGRES_USER: vote
+          POSTGRES_PASSWORD: vote
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U vote" --health-interval 5s --health-timeout 5s --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: pdo_sqlite, pdo_pgsql, gd, intl, zip
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Dépendances
+        run: |
+          composer install --no-interaction --prefer-dist --no-progress
+          npm ci
+
+      - name: Compilation du CSS et du JavaScript
+        run: npm run build
+
+      - name: Configuration
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Tests
+        run: php artisan test
+        env:
+          DB_CONNECTION: ${{ matrix.base }}
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: ${{ matrix.base == 'pgsql' && 'vote_test' || ':memory:' }}
+          DB_USERNAME: vote
+          DB_PASSWORD: vote
+
+  qualite:
+    name: Formatage et sécurité des dépendances
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Formatage (Pint)
+        run: vendor/bin/pint --test
+      - name: Failles connues dans les dépendances
+        run: composer audit

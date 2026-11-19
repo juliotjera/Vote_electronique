@@ -1,0 +1,1 @@
+@include('errors.page', ['code' => 500, 'titre' => __('Une erreur est survenue'), 'texte' => __('Le problème vient de la plateforme, pas de vous. Réessayez dans un instant : un bulletin est enregistré entièrement ou pas du tout, aucun vote n’est perdu à moitié.')])

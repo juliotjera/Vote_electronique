@@ -1,0 +1,1 @@
+@include('errors.page', ['code' => 419, 'titre' => __('Session expirée'), 'texte' => __('Pour votre sécurité, la page a expiré après une longue inactivité. Rechargez-la. Si « A voté » ne s’est pas affiché, votre bulletin n’a pas été déposé.')])
