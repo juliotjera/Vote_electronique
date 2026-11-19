@@ -7,7 +7,8 @@ services:
     plan: free
     region: frankfurt          # la plus proche de Madagascar parmi les régions de Render
     healthCheckPath: /up
-    autoDeploy: true           # chaque « git push » sur main redéploie
+    branch: master             # branche déployée
+    autoDeploy: true           # chaque « git push » sur master redéploie
     envVars:
       - key: APP_NAME
         value: Vote électronique
