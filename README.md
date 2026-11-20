@@ -104,7 +104,7 @@ Le planificateur fait avancer les scrutins (avis, rappels, clôture, purge) : `p
 php artisan test
 ```
 
-51 tests (258 vérifications) : un vote par électeur, aucune colonne reliant un bulletin à un électeur, reçu, urne scellée (bulletin modifié ou retiré détecté), liste électorale, groupes et période de vote, vote blanc et plurinominal, dépouillement (élus, égalité), connexion par code (expiration, essais, usage unique), droits d’accès, publication et purge à 30 jours, import et export CSV, liste d’émargement, rappels personnalisés, journal des tentatives refusées, parcours de vote à l’écran, affichage de chaque page, interface en malagasy, et un **test de charge de 500 électeurs** (dépouillement en 0,1 s). Détail exigence par exigence : [`docs/RAPPORT_DE_TESTS.md`](docs/RAPPORT_DE_TESTS.md).
+54 tests (268 vérifications) : un vote par électeur, aucune colonne reliant un bulletin à un électeur, reçu, urne scellée (bulletin modifié ou retiré détecté), liste électorale, groupes et période de vote, vote blanc et plurinominal, dépouillement (élus, égalité), connexion par code (expiration, essais, usage unique), droits d’accès, publication et purge à 30 jours, import et export CSV, liste d’émargement, rappels personnalisés, journal des tentatives refusées, parcours de vote à l’écran, affichage de chaque page, interface en malagasy, et un **test de charge de 500 électeurs** (dépouillement en 0,1 s). Détail exigence par exigence : [`docs/RAPPORT_DE_TESTS.md`](docs/RAPPORT_DE_TESTS.md).
 
 ## Structure
 

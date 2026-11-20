@@ -6,7 +6,7 @@
 
 | Type de test | Outil | Résultat |
 | --- | --- | --- |
-| Tests automatisés (fonctionnels et de sécurité) | PHPUnit, `php artisan test` ; sur SQLite et PostgreSQL dans GitHub Actions | **51 / 51 réussis**, 258 vérifications |
+| Tests automatisés (fonctionnels et de sécurité) | PHPUnit, `php artisan test` ; sur SQLite et PostgreSQL dans GitHub Actions | **54 / 54 réussis**, 268 vérifications |
 | Test de charge (500 électeurs) | PHPUnit (`ChargeTest`) | **réussi** : 500 votes en 1,6 à 1,8 s (3 à 4 ms par vote), dépouillement et contrôle de l’urne en 0,1 s |
 | Accessibilité WCAG 2.2 AA | axe-core 4.10, dans le navigateur | **0 erreur** sur les écrans audités (public, électeur, administration) |
 | Affichage sur téléphone (375 px) | navigateur, mesure de la largeur | aucune page ne déborde |

@@ -45,7 +45,7 @@ php artisan migrate:fresh --seed
 php artisan test
 ```
 
-51 tests (258 vérifications), dont un test de charge de 500 électeurs. Détail : [`RAPPORT_DE_TESTS.md`](RAPPORT_DE_TESTS.md).
+54 tests (268 vérifications), dont un test de charge de 500 électeurs. Détail : [`RAPPORT_DE_TESTS.md`](RAPPORT_DE_TESTS.md).
 
 ## 4. Mise en production (Render + Neon, ou tout hébergeur PHP)
 
