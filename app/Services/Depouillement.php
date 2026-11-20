@@ -17,11 +17,13 @@ class Depouillement
      */
     public function resultats(Scrutin $scrutin): array
     {
+        // colonne nommée explicitement : SQLite l'appelle « count(*) », PostgreSQL « count »
         $voix = DB::table('bulletin_choix')
             ->join('bulletins', 'bulletins.id', '=', 'bulletin_choix.bulletin_id')
             ->where('bulletins.scrutin_id', $scrutin->id)
             ->groupBy('bulletin_choix.candidature_id')
-            ->pluck(DB::raw('count(*)'), 'bulletin_choix.candidature_id');
+            ->selectRaw('bulletin_choix.candidature_id, count(*) as voix')
+            ->pluck('voix', 'candidature_id');
 
         $blancs = $scrutin->bulletins()->where('blanc', true)->count();
         $votants = $scrutin->nombreVotants();
