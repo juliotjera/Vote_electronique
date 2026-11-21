@@ -4,6 +4,11 @@
 # 1) Dépendances PHP (sans les outils de développement)
 FROM dunglas/frankenphp:1-php8.4 AS base
 RUN install-php-extensions pdo_pgsql pdo_sqlite gd intl zip opcache pcntl
+# Le binaire FrankenPHP porte une capacité Linux (ports < 1024) que l'hébergeur refuse à un utilisateur
+# non-root (« Operation not permitted ») ; inutile ici puisque l'application écoute sur le port 8080.
+RUN apt-get update && apt-get install -y --no-install-recommends libcap2-bin \
+    && setcap -r /usr/local/bin/frankenphp \
+    && apt-get purge -y libcap2-bin && rm -rf /var/lib/apt/lists/*
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY composer.json composer.lock ./
@@ -28,7 +33,7 @@ RUN composer dump-autoload --optimize --no-dev \
     && php artisan package:discover --ansi \
     && rm -f public/hot \
     && mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
-    && chown -R www-data:www-data storage bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache /data/caddy /config/caddy \
     && cp docker/php.ini "$PHP_INI_DIR/conf.d/zz-vote.ini" \
     && chmod +x docker/demarrer.sh
 USER www-data
