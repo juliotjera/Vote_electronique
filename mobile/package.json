@@ -1,0 +1,20 @@
+{
+  "name": "vote-electronique-android",
+  "private": true,
+  "description": "Application Android de Vote électronique : une coquille Capacitor qui ouvre le site en ligne.",
+  "type": "module",
+  "scripts": {
+    "icones": "python scripts/icones.py && capacitor-assets generate --android --iconBackgroundColor #1d4ed8 --iconBackgroundColorDark #1d4ed8 --splashBackgroundColor #0b1f4d --splashBackgroundColorDark #0b1f4d --logoSplashScale 0.28 && python scripts/icones-anciennes.py",
+    "sync": "cap sync android",
+    "android:apk": "cap sync android && cd android && gradlew assembleDebug",
+    "android:release": "cap sync android && cd android && gradlew assembleRelease && node ../scripts/copier-apk.mjs"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/core": "^8.6.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.2"
+  }
+}

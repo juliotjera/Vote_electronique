@@ -39,6 +39,7 @@
                 <li><a href="{{ route('verifier') }}" wire:navigate class="hover:text-white hover:underline">{{ __('Vérifier mon reçu') }}</a></li>
                 <li><a href="{{ route('confidentialite') }}" wire:navigate class="hover:text-white hover:underline">{{ __('Politique de confidentialité') }}</a></li>
                 <li><a href="{{ route('aide') }}" wire:navigate class="hover:text-white hover:underline">{{ __('Guide d’utilisation') }}</a></li>
+                <li><a href="{{ config('vote.apk') }}" class="hover:text-white hover:underline">{{ __('Application Android') }}</a></li>
             </ul>
         </div>
         <p class="border-t border-white/15 px-4 py-5 text-center text-xs text-white/50">© {{ date('Y') }} {{ __('Vote électronique') }} · {{ __('Projet académique de JERA Bevala Juliot, ESMIA Innovation') }}</p>

@@ -9,9 +9,10 @@ php artisan view:cache
 php artisan event:cache
 php artisan migrate --force
 
-# site de démonstration : données fictives au premier démarrage
+# site de démonstration : données fictives au premier démarrage, recréées au réveil si le vote de démo est clos
+# (l’offre gratuite endort le serveur : le rafraîchissement horaire ne suffit pas)
 if [ "$COMPTES_DEMO" = "true" ]; then
-    php artisan demo:preparer
+    php artisan demo:preparer --rafraichir
 fi
 
 # un processus qui s'arrête est relancé (le serveur web, lui, est le processus principal)

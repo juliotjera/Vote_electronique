@@ -47,13 +47,15 @@
                     <div class="mx-auto mt-4 h-36 w-36 [&_svg]:h-full [&_svg]:w-full" x-html="qr" role="img" aria-label="{{ __('Code QR menant à la vérification de ce reçu') }}"></div>
                     <p class="mt-1 text-xs text-ardoise">{{ __('Scannez-le pour vérifier votre bulletin, à tout moment.') }}</p>
                     <div class="mt-4 flex flex-col justify-center gap-2 sm:flex-row">
-                        <button type="button" class="btn-principal min-h-10 px-4" @click="telecharger()">
+                        {{-- dans l'application Android, une image produite par la page ne s'enregistre pas : capture d'écran --}}
+                        <button type="button" class="btn-principal min-h-10 px-4" @click="telecharger()" x-show="!dansApplication">
                             <x-icone nom="telecharger" class="h-4 w-4" /> {{ __('Télécharger mon reçu') }}
                         </button>
                         <button type="button" class="btn-contour min-h-10 px-4" @click="copier()">
                             <span x-show="!copie">{{ __('Copier le code') }}</span><span x-show="copie" x-cloak>{{ __('Copié') }}</span>
                         </button>
                     </div>
+                    <p x-show="dansApplication" x-cloak class="mt-3 text-sm font-semibold text-bleu-800">{{ __('Faites une capture d’écran de ce reçu, ou copiez son code.') }}</p>
                 </div>
                 <p class="mt-6 text-sm text-white/70">{{ __('Gardez ce reçu : il ne sera plus jamais affiché. Il permet de vérifier que votre bulletin est compté, sans révéler votre choix.') }}</p>
                 <div class="mt-6 flex flex-col justify-center gap-3 sm:flex-row">

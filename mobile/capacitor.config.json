@@ -1,0 +1,20 @@
+{
+  "appId": "mg.voteelectronique.app",
+  "appName": "Vote électronique",
+  "webDir": "www",
+  "appendUserAgent": "VoteElectroniqueApp",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": ["vote-electronique.onrender.com"]
+  },
+  "android": {
+    "backgroundColor": "#0b1f4d"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 800,
+      "backgroundColor": "#0b1f4d",
+      "showSpinner": false
+    }
+  }
+}

@@ -88,6 +88,24 @@
         </div>
     </section>
 
+    {{-- ─── Application Android : masquée quand la page est déjà ouverte dans l'application ─── --}}
+    <section x-data="qrLien(@js(config('vote.apk')))" x-show="!dansApplication" class="fond-nuit text-white" aria-labelledby="android-titre">
+        <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 sm:px-6 md:flex-row md:items-center md:justify-between">
+            <div class="max-w-xl">
+                <h2 id="android-titre" class="text-2xl sm:text-3xl">{{ __('L’application Android') }}</h2>
+                <p class="mt-3 text-white/75">{{ __('Le vote dans une application, avec son icône sur l’écran d’accueil. Fichier signé (3 Mo), Android 7 ou plus récent.') }}</p>
+                <a href="{{ config('vote.apk') }}" class="btn mt-6 bg-papier text-bleu-900 hover:bg-bleu-50">
+                    <x-icone nom="telecharger" class="h-5 w-5" /> {{ __('Télécharger l’APK') }}
+                </a>
+                <p class="mt-3 text-sm text-white/60">{{ __('À l’installation, Android demande d’autoriser les applications de cette source : l’application n’est pas sur le Play Store.') }}</p>
+            </div>
+            <div class="flex items-center gap-4 self-start rounded-lg bg-papier p-4 text-encre md:self-auto">
+                <div class="h-28 w-28 [&_svg]:h-full [&_svg]:w-full" x-html="qr" role="img" aria-label="{{ __('Code QR de téléchargement de l’application Android') }}"></div>
+                <p class="max-w-[12ch] text-sm font-semibold">{{ __('Scannez avec votre téléphone') }}</p>
+            </div>
+        </div>
+    </section>
+
     {{-- ─── Voter : une vraie séquence ─── --}}
     <section class="bg-papier">
         <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">

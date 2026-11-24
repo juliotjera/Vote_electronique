@@ -8,4 +8,7 @@ return [
     // Site de démonstration en ligne : recrée les données fictives quand le vote de démonstration est clos,
     // pour qu'un visiteur trouve toujours un scrutin ouvert. JAMAIS sur une plateforme utilisée pour de vrais votes.
     'demo_reinitialisation' => (bool) env('DEMO_REINITIALISATION', false),
+
+    // Application Android (APK signé publié dans les Releases GitHub) : bouton et code QR sur l'accueil
+    'apk' => env('APK_URL', 'https://github.com/juliotjera/Vote_electronique/releases/latest/download/vote-electronique.apk'),
 ];

@@ -46,9 +46,22 @@ document.addEventListener('alpine:init', () => {
     // Reçu de vote : QR code et image téléchargeable, calculés dans le navigateur.
     // Le QR ouvre l'urne publique avec le reçu après « # » : cette partie de l'adresse
     // n'est jamais envoyée au serveur, ni écrite dans ses journaux.
+    // Code QR d'un lien (téléchargement de l'application Android), dessiné dans la page
+    window.Alpine.data('qrLien', (lien) => ({
+        qr: '',
+        dansApplication: navigator.userAgent.includes('VoteElectroniqueApp'),
+        async init() {
+            this.qr = await QRCode.toString(lien, {
+                type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: '#0b1f4d', light: '#ffffff' },
+            });
+        },
+    }));
+
     window.Alpine.data('recuDeVote', (code, scrutin, lienUrne) => ({
         qr: '',
         copie: false,
+        // ouvert depuis l'application Android (Capacitor ajoute ce marqueur à l'agent utilisateur)
+        dansApplication: navigator.userAgent.includes('VoteElectroniqueApp'),
         async init() {
             this.qr = await QRCode.toString(`${lienUrne}#${code}`, {
                 type: 'svg', margin: 0, errorCorrectionLevel: 'M', color: { dark: '#0b1f4d', light: '#ffffff' },

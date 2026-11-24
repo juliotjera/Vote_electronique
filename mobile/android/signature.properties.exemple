@@ -1,0 +1,6 @@
+# Copiez ce fichier en « signature.properties » (jamais envoyé sur GitHub, voir .gitignore)
+# puis remplacez TON_MOT_DE_PASSE (deux fois) par le mot de passe choisi à la création de la clé.
+storeFile=D:/portfolio-julio/cle-android/vote-electronique.jks
+storePassword=TON_MOT_DE_PASSE
+keyAlias=vote-electronique
+keyPassword=TON_MOT_DE_PASSE
